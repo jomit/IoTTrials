@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateDeviceIdentity", "Cre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadDeviceToCloudMessages", "ReadDeviceToCloudMessages\ReadDeviceToCloudMessages.csproj", "{6B0EE3F0-6D80-4E84-AF2F-8A98EBE4FE2D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimulatedDevice", "SimulatedDevice\SimulatedDevice.csproj", "{54F24642-4F95-4893-956A-9D937BEC2B0A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,8 +23,15 @@ Global
 		{6B0EE3F0-6D80-4E84-AF2F-8A98EBE4FE2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B0EE3F0-6D80-4E84-AF2F-8A98EBE4FE2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B0EE3F0-6D80-4E84-AF2F-8A98EBE4FE2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54F24642-4F95-4893-956A-9D937BEC2B0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54F24642-4F95-4893-956A-9D937BEC2B0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54F24642-4F95-4893-956A-9D937BEC2B0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54F24642-4F95-4893-956A-9D937BEC2B0A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8
 	EndGlobalSection
 EndGlobal

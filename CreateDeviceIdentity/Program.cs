@@ -23,12 +23,11 @@ namespace CreateDeviceIdentity
 
         private static async Task AddDeviceAsync()
         {
-            string deviceId = "aircraft-101";
+            string deviceId = "aircraft101";
             Device device;
             try
             {
                 //device = await registryManager.AddDeviceAsync(new Device(deviceId));
-
                 device = await registryManager.AddDeviceAsync(new Device(deviceId)
                 {
                     Authentication = new AuthenticationMechanism()
