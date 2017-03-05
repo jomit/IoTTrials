@@ -250,3 +250,5 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+nodejs-samples/mypi-cert.pem
+nodejs-samples/mypi-key.pem
