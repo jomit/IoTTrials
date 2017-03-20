@@ -1,0 +1,20 @@
+{
+    "name": "iot-device-samples",
+    "version": "0.0.1",
+    "private": true,
+    "description": "Simple samples demonstrating how to use the Azure IoT device SDK for Node.js",
+    "author": "Jomit",
+    "license": "MIT",
+    "dependencies": {
+       "azure-iot-device": "^1.0.17",
+       "azure-iot-device-mqtt": "^1.0.17",
+       "node-thunderboard-react": "0.0.4"
+    },
+    "devDependencies": {
+        "jshint": "^2.9.4"
+    },
+    "scripts": {
+        "lint":"jshint --show-non-errors .",
+        "test":"npm -s run list"
+    }
+}
