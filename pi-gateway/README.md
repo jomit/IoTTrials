@@ -38,6 +38,8 @@ Check Disk Space
 
 Enable BLE connectivity + Thunderboard React connectivity
 ---------------------------------------------------
+![Thunderboard + RaspberryPi + Azure](https://raw.githubusercontent.com/jomit/IoTTrials/master/pi-gateway/ble-pi.png)
+
     sudo apt-get update
     sudo apt-get upgrade
 
