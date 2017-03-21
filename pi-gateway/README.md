@@ -53,6 +53,10 @@ Enable BLE connectivity + Thunderboard React connectivity
 
     sudo node read-sensor.js
 
+    # to connect with IoT Hub
+
+    sudo node read-sensor-iothub.js
+
 Getting started with Samples
 ------------------------------------------------------------
     git clone https://github.com/Azure-Samples/iot-hub-node-raspberrypi-getting-started.git

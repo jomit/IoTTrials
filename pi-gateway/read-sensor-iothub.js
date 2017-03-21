@@ -9,8 +9,6 @@ var ThunderboardReact = require('node-thunderboard-react');
 var thunder = new ThunderboardReact();
 
 var connectionString = "HostName=jomitpihub.azure-devices.net;DeviceId=mypi;x509=true";
-//var certFile = "mypi-cert.pem";
-//var keyFile = "mypi-key.pem";
 var deviceId = "mypi";
 var passPhrase ="";
 
