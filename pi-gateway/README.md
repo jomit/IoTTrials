@@ -12,6 +12,7 @@ Device Discovery
 
 Start VNC Server on PI
 -----------------------------------------------
+    sudo apt-get update
     sudo apt-get install tightvncserver
 
     vncserver :1 -geometry 1920x1080 -depth 24 -dpi 96
@@ -20,9 +21,11 @@ Start VNC Server on PI
 
     tightvncserver kill :1   (killing the process at the end)
 
+    ifconfig  (to get the ip address of the PI)
 
 Start VNC Viewer on Laptop
 -----------------------------------
+Install tightvnc viewer : http://www.tightvnc.com/download.html
 Open Tight VNC Viewer -> <PI IP Address>:1
 
 
