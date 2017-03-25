@@ -45,6 +45,7 @@ Enable BLE connectivity + Thunderboard React connectivity
 
     sudo apt-get update
     sudo apt-get upgrade
+    sudo apt-get install nodejs
 
     # restart the pi
 

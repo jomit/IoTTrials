@@ -34,7 +34,7 @@ namespace CreateDeviceIdentity
                     {
                         X509Thumbprint = new X509Thumbprint()
                         {
-                            PrimaryThumbprint = "6b76c6d4ca1db2825b2abcd26b8988981b597539"
+                            PrimaryThumbprint = "<>"
                         }
                     }
                 });

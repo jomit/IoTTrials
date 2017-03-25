@@ -11,7 +11,7 @@ namespace ReadDeviceToCloudMessages
 {
     class Program
     {
-        static string connectionString = "HostName=jomitiohub.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=QvXpObh4+G5vXf1kCrRy7f/Y1meFHCe7Q7KFQyOaHjc=";
+        static string connectionString = "";
         static string iotHubD2cEndpoint = "messages/events";
         static EventHubClient eventHubClient;
 

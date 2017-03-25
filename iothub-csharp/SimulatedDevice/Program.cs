@@ -20,7 +20,7 @@ namespace SimulatedDevice
             Console.WriteLine("Simulated device => {0} \n", deviceId);
 
             //deviceClient = DeviceClient.Create(iotHubUri, new DeviceAuthenticationWithRegistrySymmetricKey(deviceId, deviceThumbprint));
-            deviceClient = DeviceClient.Create(iotHubUri, new DeviceAuthenticationWithX509Certificate(deviceId, new X509Certificate2("boeing.iothub.test.pfx", "pass@word1")));
+            deviceClient = DeviceClient.Create(iotHubUri, new DeviceAuthenticationWithX509Certificate(deviceId, new X509Certificate2("sample.pfx", "password here")));
 
             //SendDeviceToCloudMessagesAsync(deviceId);
             SendDeviceToCloudWithCriticalMessagesAsync(deviceId);

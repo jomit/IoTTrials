@@ -13,7 +13,7 @@ namespace ReadCriticalQueue
         static void Main(string[] args)
         {
             Console.WriteLine("Receive critical messages. Ctrl-C to exit.\n");
-            var connectionString = "Endpoint=sb://jomitservicebus.servicebus.windows.net/;SharedAccessKeyName=ListenerAccessKey;SharedAccessKey=XCR+SjXIEA9DZCYQEgGdsEica1p6fpjHBUDYPi4LKNs=";
+            var connectionString = "";
             var queueName = "ac-critial-msg";
 
             var client = QueueClient.CreateFromConnectionString(connectionString, queueName);
