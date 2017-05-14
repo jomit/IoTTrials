@@ -1,0 +1,13 @@
+{
+  "name": "iot-dashboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "author": "Jomit Vaghela",
+  "dependencies": {
+    "azure-event-hubs": "0.0.6",
+    "chart.js": "^2.5.0",
+    "express": "^4.15.2",
+    "socket.io": "^1.7.3"
+  }
+}
