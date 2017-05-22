@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <title>IoT Dashboard</title>
+    </head>
+    <body>
+        <h1>IoT Dashboard</h1>
+        <h3 id="initialize"></h3>
+        <div>   
+        <canvas id="myChart" width="2160" height="880" style="width: 1080px; height: 540px; display: block;"></canvas>
+        <hr/>
+        <div>
+            <ul id="messages">
+            </ul>
+        </div>
+    </body>
+</html>
+<script src="js/Chart.min.js"></script>
+<script>
+var ctx = document.getElementById("myChart");
+var mydata = {
+    datasets: [
+        {
+            label: "",
+            fill: false,
+            lineTension: 0.1,
+            backgroundColor: "rgba(75,192,192,0.4)",
+            borderColor: "rgba(75,192,192,1)",
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "rgba(75,192,192,1)",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+            pointHoverBorderColor: "rgba(220,220,220,1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        }
+    ],
+    labels: ["1","2","3","4","5","6","7","8","9","10"]
+};
+var myLineChart = new Chart(ctx, {
+    type: 'line',
+    showLines : false,
+    data: mydata,
+    options: {
+        scales: {
+            xAxes: [{
+                display: false
+            }],
+            yAxes: [{
+                ticks: {
+                    max: 350,
+                    min: 0,
+                    stepSize: 10
+                }
+            }]
+
+        },
+         legend: {
+            display: false,
+        },
+        animation : false
+
+    }
+});
+
+</script>
+<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io.connect(document.location.href);
+  socket.on('connectionstart', function (data) {
+    $("#initialize").text(data.message);
+    //socket.emit('my other event', { my: 'data' });
+  });
+
+  socket.on('temperaturesensor',function(data){
+    //$("#messages").append("<li>" + JSON.stringify(data) +"</li>");
+    myLineChart.data.datasets[0].data.shift();
+    myLineChart.data.datasets[0].data.push(data.temperature);
+    myLineChart.update();
+  });
+  
+</script>
