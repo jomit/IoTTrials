@@ -10,7 +10,7 @@ var Client = require('azure-iothub').Client;
 var iothubConnectionString = "";
 var registry = Registry.fromConnectionString(iothubConnectionString);
 var iothubClient = Client.fromConnectionString(iothubConnectionString);
-var deviceToReboot = "";
+var deviceToReboot = "simulatedtempsensor";
 
 var EventHubClient = require('azure-event-hubs').Client;
 var client = EventHubClient.fromConnectionString(iothubConnectionString);
@@ -19,14 +19,14 @@ var port = process.env.PORT || "3000";
 console.log("APP LISTENING ON => " + port);
 server.listen(port);
 app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({ extended: false }));
+//app.use(bodyParser.json());
 
-app.post("/rebootdevice", function (req, res) {
-    deviceToReboot = req.body.deviceId;
-    startRebootDevice();
-    setInterval(queryTwinLastReboot, 2000);
-});
+// app.post("/rebootdevice", function (req, res) {
+//     deviceToReboot = req.body.deviceId;
+//     startRebootDevice();
+//     setInterval(queryTwinLastReboot, 2000);
+// });
 
 
 var printError = function (err) {

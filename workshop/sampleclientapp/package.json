@@ -5,7 +5,7 @@
   "main": "server.js",
   "author": "Jomit Vaghela",
   "dependencies": {
-    "azure-event-hubs": "0.0.6",
+    "azure-event-hubs": "0.0.8",
     "azure-iothub": "^1.1.11",
     "body-parser": "^1.17.2",
     "chart.js": "^2.5.0",
