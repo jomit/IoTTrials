@@ -41,3 +41,6 @@
         TumblingWindow(second,5),DEVICEID
     HAVING 
         Avg(TEMPERATURE)>50
+
+
+    # Sample Queries : https://github.com/Azure/azure-stream-analytics/tree/master/Samples/GettingStarted
