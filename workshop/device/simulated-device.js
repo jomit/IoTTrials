@@ -1,6 +1,7 @@
 'use strict';
 
-var clientFromConnectionString = require('azure-iot-device-http').clientFromConnectionString;
+var clientFromConnectionString = require('azure-iot-device-mqtt').clientFromConnectionString;
+
 var Message = require('azure-iot-device').Message;
 
 var deviceConnectionString = "";
@@ -23,7 +24,9 @@ var connectCallback = function (err) {
    } else {
      console.log('Client connected');
      console.log('Sending temperature data.... and waiting for reboot method.');
-     //client.onDeviceMethod('reboot', onReboot);
+     
+     // [Device Command/Control]
+     client.onDeviceMethod('reboot', onReboot);
 
      // Create a message and send it to the IoT Hub every second
      setInterval(function(){

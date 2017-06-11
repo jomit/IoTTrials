@@ -19,14 +19,17 @@ var port = process.env.PORT || "3000";
 console.log("APP LISTENING ON => " + port);
 server.listen(port);
 app.use(express.static(__dirname + '/public'));
-//app.use(bodyParser.urlencoded({ extended: false }));
-//app.use(bodyParser.json());
 
-// app.post("/rebootdevice", function (req, res) {
-//     deviceToReboot = req.body.deviceId;
-//     startRebootDevice();
-//     setInterval(queryTwinLastReboot, 2000);
-// });
+
+// [Device Command/Control]
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.post("/rebootdevice", function (req, res) {
+    deviceToReboot = req.body.deviceId;
+    startRebootDevice();
+    setInterval(queryTwinLastReboot, 2000);
+});
 
 
 var printError = function (err) {
