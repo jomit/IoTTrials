@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <script src="js/mqttws31.js"></script>
+        <script>
+        // Create a client instance: Broker, Port, Websocket Path, Client ID
+
+        client = new Paho.MQTT.Client("jomitpihub.azure-devices.net", Number(443), "/$iothub/websocket?iothub-no-client-cert=true", "simulatedtempsensor");
+        
+        // set callback handlers
+        client.onConnectionLost = function (responseObject) {
+            console.log("Connection Lost: "+responseObject.errorMessage);
+        }
+        
+        client.onMessageArrived = function (message) {
+            console.log("Message Arrived: " + message.payloadString);
+        }
+        
+        // Called when the connection is made
+        function onConnect(){
+            console.log("Connected!");
+
+            client.subscribe("/devices/simulatedtempsensor/messages/events/", { qos: 1 });
+
+            var message = new Paho.MQTT.Message("{ deviceId: 'simulatedtempsensor', temperature: 100 }");
+            message.destinationName = "/devices/simulatedtempsensor/messages/events/";
+            client.send(message); 
+        }
+
+        function onFail(err) {
+            console.log(err);
+        };
+        
+        console.log("Starting connection...");
+
+        // Connect the client, providing an onConnect callback
+        client.connect({
+            onSuccess: onConnect, 
+            onFailure : onFail,
+            timeout: 30,
+            cleanSession: true,
+            mqttVersion: 4,
+            useSSL: true,
+            keepAliveInterval: 60,
+            userName : "jomitpihub.azure-devices.net/simulatedtempsensor/DeviceClientType=azure-iot-device%2F1.1.2&api-version=2016-11-14",
+            password: "SharedAccessSignature sr=jomitpihub.azure-devices.net%2Fdevices%2Fsimulatedtempsensor&sig=ylcuLrembAHpzR7sb4mR53IeXd7TANErAB9%2BiBu2IQg%3D&se=1506261701"
+        });
+        </script>
+        
+    </body>
+</html>
