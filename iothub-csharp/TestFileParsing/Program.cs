@@ -23,7 +23,6 @@ namespace TestFileParsing
         static void Main(string[] args)
         {
             ICollection<object> ob;
-            ob.a
             var reader = File.OpenText("log-sample.txt");
             string line;
             var alllogs = new List<LogData>();

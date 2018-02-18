@@ -1,0 +1,19 @@
+{
+  "name": "device-registration",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "azure-iot-provisioning-device": "^1.1.1",
+    "azure-iot-provisioning-device-amqp": "^1.1.1",
+    "azure-iot-provisioning-device-http": "^1.1.1",
+    "azure-iot-provisioning-device-mqtt": "^1.0.2",
+    "azure-iot-security-x509": "^1.0.2",
+    "retry": "^0.10.1"
+  }
+}
