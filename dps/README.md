@@ -47,6 +47,13 @@
     - For raspberry pi auto load on boot, see instructions below.
 
 
+## Create Device Twin
+
+- `cd device-twin`
+
+- `node app.js`
+
+
 ## Resources
 
 - [Node.js Provisioning Tool](https://github.com/Azure/azure-iot-sdk-node/tree/master/provisioning/tools) 
