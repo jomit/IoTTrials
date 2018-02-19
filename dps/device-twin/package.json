@@ -1,0 +1,23 @@
+{
+  "name": "device-twin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "azure-iot-device": "^1.3.2",
+    "azure-iot-device-mqtt": "^1.3.2",
+    "azure-iot-provisioning-device": "^1.1.1",
+    "azure-iot-provisioning-device-amqp": "^1.1.1",
+    "azure-iot-provisioning-device-http": "^1.1.1",
+    "azure-iot-provisioning-device-mqtt": "^1.0.2",
+    "azure-iot-security-x509": "^1.0.2",
+    "noble": "^1.9.0",
+    "node-thunderboard-react": "0.0.4",
+    "retry": "^0.10.1"
+  }
+}

@@ -17,7 +17,14 @@ var enrollment = {
       }
     }
   },
-  provisioningStatus: 'disabled'
+  provisioningStatus: 'disabled',
+  initialTwin : {
+    properties : {
+      "desired" : {
+        color : "green"
+      }
+    }
+  }
 };
 
 serviceClient.createOrUpdateEnrollmentGroup(enrollment, function(err, enrollmentResponse) {

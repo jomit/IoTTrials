@@ -1,0 +1,7 @@
+{
+    "deviceEndPoint" : "global.azure-devices-provisioning.net",
+    "idScope" : "0ne0000DC1D",
+    "deviceId" : "mypi",
+    "deviceCertificateFile" : "mypi_cert.pem",
+    "deviceCertificateKeyFile" : "mypi_key.pem"
+}
