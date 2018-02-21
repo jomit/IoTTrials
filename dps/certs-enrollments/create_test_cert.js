@@ -65,7 +65,7 @@ if (parentCommonName) {
 var certOptions = {
   commonName: commonName,
   serial: Math.floor(Math.random() * 1000000000),
-  days: 1,
+  days: 365,
 };
 
 if (command === 'root' || command === 'intermediate') {
