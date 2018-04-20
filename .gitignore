@@ -252,3 +252,6 @@ paket-files/
 *.sln.iml
 *.pem
 *.pem
+*.cer
+
+.vscode

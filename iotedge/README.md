@@ -1,3 +1,15 @@
+# IoT Edge V2 on Raspberry PI
+
+- `url -sSL https://get.docker.com | sh`
+
+- `sudo apt-get purge wolfram-engine libreoffice* minecraft-pi sonic-pi`
+
+- Use Raspbian Lite : https://www.raspberrypi.org/downloads/raspbian/
+
+- `sudo apt-get autoremove`
+
+- `sudo apt-get clean`
+
 # Build IoT Edge Module on Linux VM
 
 - Prerequisites : https://docs.microsoft.com/en-us/azure/iot-edge/tutorial-simulate-device-linux 

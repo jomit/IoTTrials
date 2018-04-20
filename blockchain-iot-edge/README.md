@@ -1,48 +1,75 @@
-# IoT Edge Tracker Module for Blockchain
+# IoT Edge Audit Module for Blockchain
 
-#### Create Azure Container Registry
+#### Prerequisites
 
-- TODO
+- Install [Visual Studio Code](https://code.visualstudio.com/)
 
-#### Create IoT Hub
+- Install [Azure IoT Toolkit](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-toolkit) extension
 
-- TODO
+- Install [Azure IoT Edge](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-edge) extension
 
-#### Create IoT Edge Device
+- Install [Docker for Windows](https://docs.docker.com/docker-for-windows/install/)
+
+- Install [.NET Core SDK](https://www.microsoft.com/net/core#windowscmd)
+
+- Install [Python](https://www.python.org/downloads/)
+
+
+#### Setup
+
+- Create IoT Hub
+
+- Create a new IoT Device in the IoT Hub using Portal or VSCode
+
+- Create a new IoT Edge Device in the IoT Hub using Portal or VSCode
+
+- Create Azure Container Registry named `edgeregistry` with Admin User
+
+- Install [Azure IoT Edge Runtime](https://docs.microsoft.com/en-us/azure/iot-edge/quickstart)
+    - `pip install -U azure-iot-edge-runtime-ctl`
+
+- Start Docker for Windows
+
+- Login to Azure Container Registry
+    - `docker login edgeregistry.azurecr.io -u edgeregistry -p <password>`
+
+#### Configure Certificates for IoT Edge Runtime
+
+- Open Powershell in Administrator mode
+
+- `git clone -b modules-preview https://github.com/Azure/azure-iot-sdk-c.git`
+
+- `cd <edgefolder>`
+
+- `.  C:\azure-iot-sdk-c\tools\CACertificates\ca-certs.ps1`
+
+- `Test-CACertsPrerequisites`
+
+- `New-CACertsCertChain rsa`
+
+- `New-CACertsEdgeDevice myedgegateway`
+
+- Add the `RootCA.pem` certificate to IoT Hub using Azure Portal.
+
+- Edit `c:\windows\system32\drivers\etc\hosts` file and add `127.0.0.1  myedgegateway.test.com`
+
+#### Create & Deploy IoT Edge Solution
+
+- See `\EdgeGateway` sample code
+
+- https://docs.microsoft.com/en-us/azure/iot-edge/tutorial-multiple-modules-in-vscode
+
+- Right click on `deployment.template.json` file and click `Build IoT Edge Solution`. This will build the container images and push to ACR.
+
+- Update the generated `config\deployment.json` file to add additional modules. Use `deployment-with-blockchain.json` for reference
+
+- In the Azure IoT Hub Devices explorer in Visual Studio Code, right click the edge device, click on `Create deployment for edge device` and select the `deployment.json` file.
+    - We can also do this using Azure Portal using Set Modules option.
     
-- Create a new edge device named `myedgegateway` Using VSCode or Using Portal
 
+#### Start IoT Edge Runtime
 
-#### Create & Build IoT Edge Solution
-
-- Use VSCode to create an IoT edge solution
-    - TODO parameters...
-
-- Update the `deployment.template.json` file
-
-- Login to ACR using VSCode or use `docker login edgeregistry.azurecr.io -u edgeregistry -p <password>`
-
-- Right click on `deployment.template.json` file and click `Build IoT Edge Solution`
-
-    - It should generate a new file `config\deploymente.json` under the solution
-
-#### Deploy Edge Solution
-
-- Right click on the edge device in the Azure IOT Hub Devices explorer section and click `Create deployment for edge device`
-
-    - Select the `config\deploymente.json` under the solution
-
-
-#### Setup IoT Edge Runtime on a Windos Machine
-
-- Edit hosts file "127.0.0.1 edgegateway.local"
-
-- Start docker on windows
-
-- `pip install -U azure-iot-edge-runtime-ctl`
-    - https://docs.microsoft.com/en-us/azure/iot-edge/quickstart
-
-- `iotedgectl setup --connection-string "HostName=blockchain-hub.azure-devices.net;DeviceId=myedgedevice;SharedAccessKey=<key>" --edge-hostname "edgegateway.local" --auto-cert-gen-force-no-passwords`
+- `iotedgectl setup --connection-string "<IoT Edge device connection string >" --edge-hostname "myedgegateway.test.com" --device-ca-cert-file myedgegateway-public.pem --device-ca-chain-cert-file myedgegateway-all.pem --device-ca-private-key-file myedgegateway-private.pem --owner-ca-cert-file RootCA.pem`
 
 - `iotedgectl login --address edgeregistry.azurecr.io --username edgeregistry --password <password>`
 
@@ -50,78 +77,14 @@
 
 - `docker ps`
 
-- `docker logs -f edgeAgent`
+- `docker logs -f AuditModule`
 
+#### Create & Run Simulated Leaf Device
 
-#### OTHER
-
-- Test default route for IoT Edge
-
-    - Click on Iot Edge device in portal
-
-    - Clickc on Set Modules -> Next -> [Make sure default route] -> Submit
-
-    - `docker ps`
-
-    - You should see a new `edgeHub` container
-
-    - `docker logs -f edgeHub`
-
-- Test device connection
-
-    - Create new device on IoT Hub 
-
-    - Update connection string in `device\app.js`
-
-    - `npm start`
-
-    - Start monitoring D2C message
-
-- Create IoT Edge Module
-
-    - `dotnet new -i Microsoft.Azure.IoT.Edge.Module`
-
-    - `dotnet new aziotedgemodule -n TrackerModule`
-
-    - Update the code in `Program.cs` inside `PipeMessage` function
-
-    - Update the `repository` in `module.json` file to point to ACR
-
-    - `docker login edgeregistry.azurecr.io -u edgeregistry -p <password>`
-
-    - Right click on `module.json` and click `Build and Push IoT Edge Module Image`
-
-- Deploy IoT Edge Module
-
-    - In Azure Portal open the edge device and click on `Set Modules`
-
-    - Click on `Add IoT Edge Module`
-        - Name : `trackermodule`
-        - Image URI :
-
-    - Click Next and specify the route :
-
-        ```{
-            "routes": {
-                "sensorToTrackerModule": "FROM /messages/* WHERE NOT IS_DEFINED($connectionModuleId) INTO BrokeredEndpoint(\"/modules/trackermodule/inputs/input1\")",
-                "trackerModuleToIoTHub": "FROM /messages/modules/trackermodule/outputs/output1 INTO $upstream"
-            }
-        }```
-
-    - `iotedgectl login --address edgeregistry.azurecr.io --username edgeregistry --password <password>`
+- See `\DotnetDevice`
 
 
 #### Troubleshooting
 
-- To resolve port mapping issues Reset Docker to factory defaults.
-
-#### Additional Resources
-
-- https://docs.microsoft.com/en-us/azure/iot-edge/tutorial-csharp-module
-
-- https://docs.microsoft.com/en-us/azure/iot-edge/how-to-vscode-develop-csharp-module
-
-- https://github.com/Nethereum/Nethereum/blob/master/src/Nethereum.Tutorials/Nethereum.Tutorials.Core/CallTransactionEvents/CallTranEvents.cs
-
-
+- For port related issues, Reset docker to factory defaults.
 

@@ -3,10 +3,11 @@
 var clientFromConnectionString = require('azure-iot-device-mqtt').clientFromConnectionString;
 var Message = require('azure-iot-device').Message;
 
-var deviceId = 'mydevice';
-var deviceConnectionString = "HostName=blockchain-hub.azure-devices.net;DeviceId=mydevice;SharedAccessKey=tmxO/nGy0ISDalQYol89b7RUwjdDzjafzJzx9XanrAw="; 
-var edgeHostName = "edgegateway.local" 
+var deviceId = 'leafsensor';
+var deviceConnectionString = "HostName=blockchain-hub.azure-devices.net;DeviceId=leafsensor;SharedAccessKey=<key>";
+var edgeHostName = "myedgegateway.test.com" 
 var connectionString = deviceConnectionString + ";GatewayHostName=" + edgeHostName;
+console.log(connectionString);
 var client = clientFromConnectionString(connectionString);
 
 function printResultFor(op) {
@@ -31,7 +32,7 @@ var connectCallback = function (err) {
             //message.properties.add('temperatureAlert', (temperature > 30) ? 'true' : 'false');
             console.log("Sending message: " + message.getData());
             client.sendEvent(message, printResultFor('send'));
-        }, 1000);
+        }, 2000);
     }
 };
 
