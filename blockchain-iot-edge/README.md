@@ -1,4 +1,4 @@
-# Azure IoT Edge Smart Contract Module for Blockchain (IN PROGRESS...)
+# Azure IoT Edge Smart Contract Module for Blockchain 
 
 ![Azure IoT Edge Smart Contract Module for Blockchain](https://raw.githubusercontent.com/jomit/IoTTrials/master/blockchain-iot-edge/smart-contract-module.jpg)
 
