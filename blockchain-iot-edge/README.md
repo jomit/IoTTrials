@@ -1,4 +1,4 @@
-# IoT Edge Audit Module for Blockchain
+# IoT Edge Audit Module for Blockchain (IN PROGRESS...)
 
 #### Prerequisites
 
@@ -55,13 +55,15 @@
 
 #### Create & Deploy IoT Edge Solution
 
-- See `\EdgeGateway` sample code
+- [Create IoT Edge Solution using VS Code](https://docs.microsoft.com/en-us/azure/iot-edge/tutorial-multiple-modules-in-vscode) 
 
-- https://docs.microsoft.com/en-us/azure/iot-edge/tutorial-multiple-modules-in-vscode
+    - Make sure to use Azure Container Registry for image repository
+
+- Update the C# module code and `deployment.template.json` file as per the sample code in `\EdgeGateway`
 
 - Right click on `deployment.template.json` file and click `Build IoT Edge Solution`. This will build the container images and push to ACR.
 
-- Update the generated `config\deployment.json` file to add additional modules. Use `deployment-with-blockchain.json` for reference
+- Update the generated `config\deployment.json` file as per `\EdgeGateway\deployment-with-blockchain.json` for reference
 
 - In the Azure IoT Hub Devices explorer in Visual Studio Code, right click the edge device, click on `Create deployment for edge device` and select the `deployment.json` file.
     - We can also do this using Azure Portal using Set Modules option.
@@ -84,7 +86,26 @@
 - See `\DotnetDevice`
 
 
+
 #### Troubleshooting
 
 - For port related issues, Reset docker to factory defaults.
 
+#### Debug IoT Edge Solution container locally
+
+- Replace `Program.cs` file of the module with `Program.debug.txt`
+
+- `cd EdgeGateway\modules\SmartContractModule`
+
+- `docker build -t edgeregistry.azurecr.io/smartcontractmodule:test .` 
+- `docker run -d -p 8545:8545 --name ganache trufflesuite/ganache-cli:latest`
+- `docker inspect ganache` to check the IPAddress
+- `docker run -d --name smartcontractmodule -e RPCENDPOINT='http://172.17.0.1:8545' edgeregistry.azurecr.io/smartcontractmodule:test`
+- `docker logs -f ganache`
+- `docker logs -f smartcontractmodule`
+
+
+- `docker network inspect bridge`
+- `docker rm $(docker ps -a -q) -f`
+- `docker rmi edgeregistry.azurecr.io/smartcontractmodule:test`
+- `docker rmi $(docker images -a -q) -f`

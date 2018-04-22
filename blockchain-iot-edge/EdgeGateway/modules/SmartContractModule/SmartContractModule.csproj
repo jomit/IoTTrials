@@ -8,6 +8,14 @@
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
     <TreatSpecificWarningsAsErrors />
   </PropertyGroup>
+  
+  <ItemGroup>
+    <None Remove="Program.debug.txt" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Include="Program.debug.txt" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.Devices.Client" Version="1.6.0-preview-001" />
